@@ -16,10 +16,13 @@ keymap.set("n", "<leader>nh", ":nohl<CR>")
 -- 切换buffer
 keymap.set("n", "L", ":bnext<CR>")
 keymap.set("n", "H", ":bprevious<CR>")
-keymap.set("n", "<leader>x", ":bdelete<CR>")
+keymap.set("n", "<leader>x", ":bdelete | bprevious<CR>")
 
 
 
 ----- 插件 -----
 -- nvim-tree
 keymap.set("", "<C-n>", ":NvimTreeToggle<CR>")
+
+-- vim-tex
+keymap.set("n", "<leader>ll", ":VimtexCompile<CR>")

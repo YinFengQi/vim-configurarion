@@ -1,0 +1,21 @@
+snippet beg "begin{} / end{}" bA
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+snippet `lm|ml` "inline Math" wA
+$${1}$$0
+endsnippet
+
+snippet eqt "equation" wA
+\begin{equation}
+	${1}
+\end{equation}
+endsnippet
+
+snippet enum "enumerator" bA
+\begin{enumerate}
+	${1}
+\end{enumerate}$0
+endsnippet

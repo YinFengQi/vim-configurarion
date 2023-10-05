@@ -1,0 +1,110 @@
+# == Fraction Match ==
+
+snippet // "Fraction" iAm
+\frac{${1:${VISUAL}}}{$2}$0
+endsnippet
+
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" riAm
+\frac{`!p snip.rv = match[1]`}{$1}$0
+endsnippet
+
+
+# == Hat Operation ==
+
+# ==== Auto Capture Hat Operation ====
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(htd|TD)` "tilde" irAm
+\tilde{`!p snip.rv = match[1]`}
+endsnippet
+
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)bar` "bar" irAm
+\bar{`!p snip.rv = match[1]`}
+endsnippet
+
+priority 100
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hat|HAT)` "hat" irAm
+\hat{`!p snip.rv = match[1]`}
+endsnippet
+priority 0
+
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hvec)` "Vector postfix" irAm
+\vec{`!p snip.rv = match[1]`}
+endsnippet
+
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dot)` "dot" irAm
+\dot{`!p snip.rv = match[1]`}
+endsnippet
+
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hdd)` "ddot" irAm
+\ddot{`!p snip.rv = match[1]`}
+endsnippet
+
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(sls)` "slashed in slash package" irAm
+\slashed{`!p snip.rv = match[1]`}
+endsnippet
+
+priority 1000
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dag)` "hermite" iAmr
+`!p snip.rv = match[1]`^{\dagger}
+endsnippet 
+priority 0
+
+# ===== Static Hat Operation ====
+snippet hat "hat" iAm
+\hat{$1}$0
+endsnippet
+
+snippet hsq "\sqrt{}" iAm
+\sqrt{${1}}$0
+endsnippet
+
+# == Superscript Operation ==
+
+snippet tp "to the ... power" iAm
+^{${1:2}}$0
+endsnippet
+
+# == Subscript Operation ==
+
+snippet td "subscript" iAm
+_{${1}}$0
+endsnippet
+
+snippet `(})(\d)\2` "auto subscript" riAm
+`!p snip.rv = match[1] + "_" + match[2]`
+endsnippet
+
+snippet `([A-Za-z])(\d)` "auto subscript" irAm
+`!p snip.rv = match[1] + "_" + match[2]`
+endsnippet
+
+priority 100
+snippet `([A-Za-z])_(\d{2})` "auto subscript" irAm
+`!p snip.rv = match[1] + "_{" + match[2] `}$0
+endsnippet
+
+snippet `([A-Za-z])S(\d)` "auto subscript" irAm
+`!p snpi.rv = match[1] + "_{" + match[2]` $1}$2
+endsnippet
+priority 0
+
+snippet `\b(?<!\\)([A-Za-z}])([a-z])\2` "auto subscript 2" irAm
+`!p snip.rv = match[1] + "_" + match[2]`
+endsnippet
+
+# Custom: Add more greek letters (and for partial operator by mny)
+priority 100
+snippet `(\\partial|\\mu|\\alpha|\\sigma|\\rho|\\beta|\\gamma|\\delta|\\zeta|\\eta|\\varepsilon|\\epsilon|\\theta|\\iota|\\kappa|\\vartheta|\\lambda|\\xi|\\nu|\\pi|\\rho|\\tau|\\upsilon|\\phi|\\chi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega)([a-zA-Z])\2` "auto subscript for greek letter" irAm
+`!p snip.rv = match[1] + "_" + match[2] `
+endsnippet
+
+snippet `(\\partial|\\mu|\\alpha|\\sigma|\\rho|\\beta|\\gamma|\\delta|\\zeta|\\eta|\\varepsilon|\\epsilon|\\theta|\\iota|\\kappa|\\vartheta|\\lambda|\\xi|\\nu|\\pi|\\rho|\\tau|\\upsilon|\\phi|\\chi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega)S([a-zA-Z])\2` "auto subscript for greek letter" irAm
+`!p snip.rv = match[1] + "_{${1:" + match[2] `}}$2
+endsnippet
+priority 0
+
+#上下标在正上方/正下方
+snippet updn "above script and below script" iAm 
+\mathop{$1}\limits^{$2}_{$3}$0
+endsnippet
+
+

@@ -9,9 +9,10 @@ opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
+opt.smartindent = true
 
 -- 防止包裹
-opt.wrap = false
+opt.wrap = true 
 
 -- 光标行
 opt.cursorline = true

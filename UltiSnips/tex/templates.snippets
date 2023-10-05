@@ -1,0 +1,25 @@
+snippet newfile "complete the preamble part" A
+\documentclass{$1}
+\input{${2:../preamble.tex}}	% 请检查相对路径是否有效
+\title{$3}
+\author{$4}
+
+\begin{document}
+
+\maketitle
+
+$0
+
+\end{document}
+endsnippet
+
+snippet newtikz "complete tikz preamble" A
+\documentclass{standalone}
+
+\begin{document}
+\begin{tikzpicture}
+
+$0
+\end{tikzpicture}
+\end{document}
+endsnippet
