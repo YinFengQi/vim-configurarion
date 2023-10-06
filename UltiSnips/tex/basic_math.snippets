@@ -1,10 +1,28 @@
-# == Fraction Match ==
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 
-snippet // "Fraction" iAm
+def comment(): 
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    return x != '0' and x != '0'
+endglobal
+
+context "math()"
+snippet dis "displaystyle" iA
+\displaystyle 
+endsnippet
+
+# == Fraction Match ==
+context "math()"
+snippet // "Fraction" iA
 \frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
-snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" riAm
+context "math()"
+snippet `((\d+)|(\d*)(\\)?([A-Za-z!]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" riA
 \frac{`!p snip.rv = match[1]`}{$1}$0
 endsnippet
 
@@ -12,99 +30,497 @@ endsnippet
 # == Hat Operation ==
 
 # ==== Auto Capture Hat Operation ====
+context "math()"
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(htd|TD)` "tilde" irAm
 \tilde{`!p snip.rv = match[1]`}
 endsnippet
 
+context "math()"
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)bar` "bar" irAm
 \bar{`!p snip.rv = match[1]`}
 endsnippet
 
 priority 100
+context "math()"
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hat|HAT)` "hat" irAm
 \hat{`!p snip.rv = match[1]`}
 endsnippet
 priority 0
 
+context "math()"
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hvec)` "Vector postfix" irAm
 \vec{`!p snip.rv = match[1]`}
 endsnippet
 
+context "math()"
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dot)` "dot" irAm
 \dot{`!p snip.rv = match[1]`}
 endsnippet
 
+context "math()"
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(hdd)` "ddot" irAm
 \ddot{`!p snip.rv = match[1]`}
 endsnippet
 
+context "math()"
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(sls)` "slashed in slash package" irAm
 \slashed{`!p snip.rv = match[1]`}
 endsnippet
 
 priority 1000
+context "math()"
 snippet `(\\?[a-zA-Z]\w*({?\w*})?)(dag)` "hermite" iAmr
 `!p snip.rv = match[1]`^{\dagger}
 endsnippet 
 priority 0
 
 # ===== Static Hat Operation ====
+context "math()"
 snippet hat "hat" iAm
 \hat{$1}$0
 endsnippet
 
+context "math()"
 snippet hsq "\sqrt{}" iAm
 \sqrt{${1}}$0
 endsnippet
 
 # == Superscript Operation ==
 
+context "math()"
 snippet tp "to the ... power" iAm
 ^{${1:2}}$0
 endsnippet
 
 # == Subscript Operation ==
 
+context "math()"
 snippet td "subscript" iAm
 _{${1}}$0
 endsnippet
 
+context "math()"
 snippet `(})(\d)\2` "auto subscript" riAm
 `!p snip.rv = match[1] + "_" + match[2]`
 endsnippet
 
+context "math()"
 snippet `([A-Za-z])(\d)` "auto subscript" irAm
 `!p snip.rv = match[1] + "_" + match[2]`
 endsnippet
 
 priority 100
+context "math()"
 snippet `([A-Za-z])_(\d{2})` "auto subscript" irAm
 `!p snip.rv = match[1] + "_{" + match[2] `}$0
 endsnippet
 
+context "math()"
 snippet `([A-Za-z])S(\d)` "auto subscript" irAm
 `!p snpi.rv = match[1] + "_{" + match[2]` $1}$2
 endsnippet
 priority 0
 
+context "math()"
 snippet `\b(?<!\\)([A-Za-z}])([a-z])\2` "auto subscript 2" irAm
 `!p snip.rv = match[1] + "_" + match[2]`
 endsnippet
 
 # Custom: Add more greek letters (and for partial operator by mny)
+context "math()"
 priority 100
 snippet `(\\partial|\\mu|\\alpha|\\sigma|\\rho|\\beta|\\gamma|\\delta|\\zeta|\\eta|\\varepsilon|\\epsilon|\\theta|\\iota|\\kappa|\\vartheta|\\lambda|\\xi|\\nu|\\pi|\\rho|\\tau|\\upsilon|\\phi|\\chi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega)([a-zA-Z])\2` "auto subscript for greek letter" irAm
 `!p snip.rv = match[1] + "_" + match[2] `
 endsnippet
 
+context "math()"
 snippet `(\\partial|\\mu|\\alpha|\\sigma|\\rho|\\beta|\\gamma|\\delta|\\zeta|\\eta|\\varepsilon|\\epsilon|\\theta|\\iota|\\kappa|\\vartheta|\\lambda|\\xi|\\nu|\\pi|\\rho|\\tau|\\upsilon|\\phi|\\chi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega)S([a-zA-Z])\2` "auto subscript for greek letter" irAm
 `!p snip.rv = match[1] + "_{${1:" + match[2] `}}$2
 endsnippet
 priority 0
 
 #上下标在正上方/正下方
+context "math()"
 snippet updn "above script and below script" iAm 
 \mathop{$1}\limits^{$2}_{$3}$0
 endsnippet
+
+# == Font Operation ==
+
+# ==== Static Operation ====
+
+context "math()"
+snippet txt "text" iAm
+\text{$1}$0
+endsnippet
+
+context "math()"
+snippet tit "text it" iAm
+\textit{$1}$0
+endsnippet
+
+context "math()"
+snippet mbb "mathbb" iAm
+\mathbb{$1}$0
+endsnippet
+
+context "math()"
+snippet mbf "mathbf" iAm
+\mathbf{$1}$0
+endsnippet
+
+context "math()"
+snippet mbm "mathbm" iAm
+\mathbm{$1}$0
+endsnippet
+
+context "math()"
+snippet TT "^T" iAm
+^{\mathrm{T}}
+endsnippet
+
+context "math()"
+snippet RR "R" iAm
+\mathbb{R}
+endsnippet
+
+context "math()"
+snippet NN "N" iAm
+\mathbb{N}
+endsnippet
+
+context "math()"
+snippet ZZ "Z" iAm
+\mathbb{Z}
+endsnippet
+
+context "math()"
+snippet QQ "Q" iAm
+\mathbb{Q}
+endsnippet
+
+context "math()"
+snippet CC "C" iAm
+\mathbb{C}
+endsnippet
+
+# ==== Dynamic Operation ====
+
+priority 100
+
+context "math()"
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bf|BF)` "mathbf" irAm
+\mathbf{`!p snip.rv = match[1]`}
+endsnippet
+
+context "math()"
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(bm|BM)` "mathbm" irAm
+\bm{`!p snip.rv = match[1]`}
+endsnippet
+
+context "math()"
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(sf)` "mathsf" irAm
+\mathsf{`!p snip.rv = match[1]`}
+endsnippet
+
+context "math()"
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)(frak)` "mathfrak" riAm
+\mathfrak{`!p snpi.rv = match[1]`}
+endsnippet
+
+context "math()"
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)cal` "mathcal" iAmr
+\mathcal{`!p snip.rv = match[1].upper()`}$0
+endsnippet
+
+context "math()"
+snippet `(?<!\\)\b([a-zA-Z]+)rm` "mathrm" riAm
+\mathrm{`!p snip.rv = match[1]`}
+endsnippet
+
+context "math()"
+snippet `(?<!\\)\b([a-zA-Z]+)opn` "operatorname" irAm
+\operatorname{`!p snip.rv = match[1]`}
+endsnippet
+
+context "math()"
+snippet `(\\?[a-zA-Z]\w*({?\w*})?)bb` "mathbb" irAm
+\mathbb{`!p snip.rv = match[1]`}$0
+endsnippet
+
+priority 0
+
+# == Auto Symbol ==
+
+context "math()"
+snippet oo "\infty" iAmm
+\infty
+endsnippet
+
+context "math()"
+snippet ... "cdots" iAm
+\cdots
+endsnippet
+
+context "math()"
+snippet ** "dot multiply" iAm
+\cdot 
+endsnippet
+
+context "math()"
+snippet +- "pm" iAm
+\pm 
+endsnippet
+
+context "math()"
+snippet -+ "mp" iAm
+\mp 
+endsnippet
+
+context "math()"
+snippet odot "odot" iAm
+\odot 
+endsnippet
+
+context "math()"
+snippet xx "cross" iAm
+\times 
+endsnippet
+
+context "math()"
+snippet eps "epsilon" iAm
+\epsilon
+endsnippet
+
+priority 100
+context "math()"
+snippet veps "varepsilon" iAm
+\varepsilon
+endsnippet
+
+context "math()"
+snippet ell "ell" iAm
+\ell
+endsnippet
+
+context "math()"
+snippet log "log" iAm
+\log
+endsnippet
+priority 0
+
+context "math()"
+snippet bin "binom" iAm
+\binom{$1}{$2}
+endsnippet
+
+context "math()"
+snippet oth "otherwise" iAm
+\text{otherwise}
+endsnippet
+
+context "math()"
+snippet star "star" iAm
+^{*}
+endsnippet
+
+# ==== Logic Symbol ====
+
+context "math()"
+snippet empty "empty" iAm
+\empty
+endsnippet
+
+priority 200
+context "math()"
+snippet inn "in" iAm
+\in 
+endsnippet
+
+context "math()"
+snippet `\\ln ?ot` "in" riAm
+\lnot 
+endsnippet
+priority 0
+
+context "math()"
+snippet sse "subseteq" iAm
+\subseteq 
+endsnippet
+
+context "math()"
+snippet sqs "sqsubset" iAm
+\sqsubseteq 
+endsnippet
+
+context "math()"
+snippet !> "mapsto" iAm
+\mapsto 
+endsnippet
+
+context "math()"
+priority 100
+snippet |-> "mapsto" iAm
+\mapsto 
+endsnippet
+
+context "math()"
+snippet -> "->" iAm
+\rightarrow
+endsnippet
+
+context "math()"
+snippet -< "<-" iAm
+\leftarrow 
+endsnippet
+
+priority 200
+context "math()"
+snippet |--> "longmapsto" iAm
+\longmapsto 
+endsnippet
+
+context "math()"
+snippet --> "-->" iAm
+\longrightarrow
+endsnippet
+
+context "math()"
+snippet --< "<--" iAm
+\longleftarrow
+endsnippet
+
+context "math()"
+snippet <-> "<->" iAm
+\leftrightarrow
+endsnippet
+
+context "math()"
+snippet <--> "<->" iAm
+\longleftrightarrow
+endsnippet
+priority 0
+
+context "math()"
+snippet to "to" iAm
+\to 
+endsnippet
+
+context "math()"
+snippet => "implies" iAm
+\implies
+endsnippet
+
+context "math()"
+snippet <=> "if and only if" iAm
+\iff
+endsnippet
+#当然有下面那条这条就没用了
+
+context "math()"
+snippet `(\\le(\s*)>)|(\\le>)` "if and only if" iAmr
+\iff
+endsnippet
+
+context "math()"
+snippet EE "exist" iAm
+\exists 
+endsnippet
+
+context "math()"
+snippet AA "forall" iAm
+\forall 
+endsnippet
+
+context "math()"
+snippet bec "because" iAm
+\because 
+endsnippet
+
+context "math()"
+snippet thr "therefore" iAm
+\therefore 
+endsnippet
+
+context "math()"
+snippet >= "greater than" iAm
+\ge $0
+endsnippet
+
+context "math()"
+snippet <= "less than" iAm
+\le $0
+endsnippet
+
+context "math()"
+snippet != "no equals" iAm
+\neq 
+endsnippet
+
+context "math()"
+snippet == " constan equals" iAm
+\equiv 
+endsnippet
+
+context "math()"
+snippet sim "sim" iAm
+\sim 
+endsnippet
+
+context "math()"
+snippet `\\sim eq` "simeq" iArm
+\simeq 
+endsnippet
+
+context "math()"
+snippet ~~ " Amppro equals" iAm
+\approx 
+endsnippet
+
+context "math()"
+snippet ~= " Amppro equals2" iAm
+\cong
+endsnippet
+
+context "math()"
+snippet ~- " Amppro equals3" iAm
+\simeq
+endsnippet
+
+context "math()"
+snippet >> ">>" iAm
+\gg
+endsnippet
+
+context "math()"
+snippet << "<<" iAm
+\ll
+endsnippet
+
+# ====== vector differential operators =====
+
+context "math()"
+snippet grad "gradient" iAm
+\nabla
+endsnippet
+
+context "math()"
+snippet div "divergence" iAm
+\nabla \cdot 
+endsnippet
+
+context "math()"
+snippet rot "rot" iAm
+\nabla \times 
+endsnippet
+
+
+
+
+
+
+
+
+
 
 

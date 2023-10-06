@@ -38,7 +38,8 @@ opt.signcolumn = "yes"
 -- 主题
 require("tokyonight").setup({
   transparent = false,
+--  Normal = { fg = theme.colors.fg, bg = options.transparent and c.none or c.bg },
 })
-vim.cmd[[colorscheme tokyonight-moon]]
+vim.cmd[[colorscheme tokyonight]]
 
 

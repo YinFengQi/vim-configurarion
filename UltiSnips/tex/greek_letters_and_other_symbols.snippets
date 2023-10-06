@@ -1,14 +1,44 @@
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment(): 
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    return x != '0' and x != '0'
+endglobal
+
+
 # 主要根据 vscode 的扩展 latex-workshop 的设定
+context "math()"
+snippet `(?<!\\)(sum|min|max|argmin|argmax|sup|inf)` "sum|min|max|argmin|argmax|sup|inf" irAm
+\\`!p snip.rv = match[1] `
+endsnippet
+
+context "math()"
+snippet `(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|exp|det|perp|arcsin|arccos|arctan|arccot|arccsc|arcsec|ell|nabla|notin|not)` "function" riAm
+\\`!p snip.rv = match[1] `
+endsnippet
+
+context "math()"
+snippet `(?<!\\)(mu|alpha|sigma|rho|beta|Beta|gamma|delta|pi|zeta|eta|varepsilon|theta|iota|kappa|vartheta|lambda|xi|nu|pi|rho|tau|upsilon|varphi|phi|chi|psi|omega|Gamma|Delta|Theta|Lambda|Xi|Pi|Sigma|Upsilon|Phi|Psi|Omega)` "greek" riAm
+\\`!p snip.rv = match[1]`
+endsnippet
 
 # === Greek letters ===
+context "math()"
 snippet @a "alpha" iAm
 \alpha
 endsnippet
 
+context "math()"
 snippet @A "Alpha" iAm
 \Alpha
 endsnippet
 
+context "math()"
 snippet @b "beta" iAm
 \beta
 endsnippet
