@@ -2,7 +2,7 @@ vim.g.tex_flavor='latex'
 vim.g.vimtex_view_method='zathura'
 vim.g.vimtex_quickfix_mode=0
 vim.cmd[[set conceallevel=2]]
-vim.g.tex_conceal='abdmgs'
+-- vim.g.tex_conceal='abdmgs'
 vim.cmd[[let g:vimtex_syntax_conceal = {
           \ 'accents': 1,
           \ 'ligatures': 1,
