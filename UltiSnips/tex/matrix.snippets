@@ -1,0 +1,82 @@
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment(): 
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    return x != '0' and x != '0'
+endglobal
+
+# == Matrix ==
+
+# ==== Static Matrix ====
+
+context math()
+snippet pmat "pmat" wm
+\begin{pmatrix} 
+	${1: } 
+\end{pmatrix} $0
+endsnippet
+
+
+context math()
+snippet bmat "pmat" wm
+\begin{bmatrix} 
+	$1 
+\end{bmatrix} $0
+endsnippet
+
+context math()
+snippet vecC "column vector" iAm
+\begin{bmatrix} ${1}_1 \\\\ ${1}_2 \\\\ \vdots \\\\ ${1}_${2:n} \end{bmatrix}
+endsnippet
+
+context math()
+snippet vecR "row vector" iAm
+\begin{bmatrix} ${1:x}_1, ${1:x}_2, \cdots, ${1:x}_${2:n} \end{bmatrix}$0
+endsnippet
+
+priority 300
+context math()
+snippet omis "omission" iAm
+\\begin{bmatrix}
+	${1:1}&${2:1}&\\cdots&${4:1}\\\\
+	${5:1}&${6:1}&\\cdots&${8:1}\\\\
+	\\vdots&\\vdots&\\ddots&\\vdots\\\\
+	${13:1}&${14:1}&\\cdots&${16:1}
+\\end{bmatrix}
+endsnippet
+priority 0
+
+context math()
+snippet submat "omission" iAm
+\\begin{bmatrix}
+	${1:a}_{11} & ${1:a}_{12} & \\cdots & ${1:a}_{1n} \\\\
+	${1:a}_{21} & ${1:a}_{22} & \\cdots & ${1:a}_{2n} \\\\
+	\\vdots & \\vdots & \\ddots & \\vdots \\\\
+	${1:a}_{n1} & ${1:a}_{n2} & \\cdots & ${1:a}_{nn}
+\\end{bmatrix}
+endsnippet
+
+context math()
+snippet subplusmat "omission" iAm
+\\begin{bmatrix}
+	${1:a}_{11}+${2:b}_{11} & ${1:a}_{12}+${2:b}_{12} & \\cdots & ${1:a}_{1n}+${2:b}_{1n} \\\\
+	${1:a}_{21}+${2:b}_{21} & ${1:a}_{22}+${2:b}_{22} & \\cdots & ${1:a}_{2n}+${2:b}_{2n} \\\\
+	\\vdots & \\vdots & \\ddots & \\vdots \\\\
+	${1:a}_{n1}+${2:b}_{n1} & ${1:a}_{n2}+${2:b}_{n2} & \\cdots & ${1:a}_{nn}+${2:b}_{nn}
+\\end{bmatrix}
+endsnippet
+priority 0
+
+snippet jacobi "jacobi" iAm
+\\begin{bmatrix}
+	\\frac{\\partial ${1:f}_1}{\\partial ${2:x}_1}&\\frac{\\partial ${1:f}_1}{\\partial ${2:x}_2}&\\cdots&\\frac{\\partial ${1:f}_1}{\\partial ${2:x}_${3:n}}\\\\
+	\\frac{\\partial ${1:f}_2}{\\partial ${2:x}_1}&\\frac{\\partial ${1:f}_2}{\\partial ${2:x}_2}&\\cdots&\\frac{\\partial ${1:f}_2}{\\partial ${2:x}_${3:n}}\\\\
+	\\vdots&\\vdots&\\ddots&\\vdots\\\\
+	\\frac{\\partial ${1:f}_${4:m}}{\\partial ${2:x}_1}&\\frac{\\partial ${1:f}_${4:m}}{\\partial ${2:x}_2}&\\cdots&\\frac{\\partial ${1:f}_${4:m}}{\\partial ${2:x}_${3:n}}
+\\end{bmatrix}
+endsnippet

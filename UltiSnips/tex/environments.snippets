@@ -11,7 +11,13 @@ def env(name):
 endglobal
 
 
+
+
 # ==== Auto Math Mode ====
+context math()
+snippet dis "displaystyle" iA
+	\displaystyle 
+endsnippet
 
 snippet `lm|ml` "inline Math" rwA
 $${1}$$0
@@ -23,7 +29,7 @@ snippet eqt "equation" wA
 \end{equation}
 endsnippet
 
-context "math()"
+context math()
 snippet case "cases" iAm
 \begin{cases} 
 	$1, & $2 
@@ -32,7 +38,7 @@ snippet case "cases" iAm
 \end{cases}
 endsnippet
 
-context "math()"
+context math()
 snippet ali "aligned" iAm
 \begin{aligned}
 	$1 &$2
@@ -43,80 +49,80 @@ endsnippet
 
 # == Auto Adaptive Close ==
 
-context "math()"
+context math()
 snippet ceil "ceil" iAm
 \left\lceil $1 \right\rceil $0
 endsnippet
 
-context "math()"
+context math()
 snippet floor "floor" iAm
 \left\lfloor $1 \right\rfloor$0
 endsnippet
 
 priority 100
-context "math()"
+context math()
 snippet @) "left( right)" Aim
 \left( ${1} \right) $0
 endsnippet
 
-context "math()"
+context math()
 snippet @| "left| right|" Aim
 \left| ${1} \right| $0
 endsnippet
 
-context "math()"
+context math()
 snippet @\ "left. right|" Aim
 \left. ${1} \right|_{${2}}$0
 endsnippet
 
-context "math()"
+context math()
 snippet @} "left\{ right\}" Aim
 \left\\{ ${1} \right\\} $0
 endsnippet
 
-context "math()"
+context math()
 snippet set "\{ \}" Aim
 \\{ ${1} \\}$0
 endsnippet
 
-context "math()"
+context math()
 snippet @] "left[ right]" Aim
 \left[ ${1} \right] $0
 endsnippet
 
-context "math()"
+context math()
 snippet @> "leftangle rightangle" iAm
 \left< ${1} \right> $0
 endsnippet
 priority 0
 
-context "math()"
+context math()
 snippet `\<(\\?[a-zA-Z]\w*({?\w*})?)\|` "Dirac bra" rAim
 \bra{`!p snip.rv = match[1]`}
 endsnippet
 
-context "math()"
+context math()
 snippet `\|(\\?[a-zA-Z]\w*({?\w*})?)\>` "Dirac ket" Arim
 \ket{`!p snip.rv = match[1]`}
 endsnippet
 
-context "math()"
+context math()
 snippet bra "Dirac bra" iAm
 \bra{$1}$0
 endsnippet
 
-context "math()"
+context math()
 snippet ket "Dirac ket" iAm
 \ket{$1}$0
 endsnippet
 
 priority 200
-context "math()"
+context math()
 snippet norm "abs" iAm
 \left\| ${1} \right\| $2
 endsnippet
 
-context "math()"
+context math()
 snippet abs "absolute value" iAm
 \left\vert ${1} \right\vert $0
 endsnippet
@@ -148,13 +154,23 @@ $0
 endsnippet
 
 # ======== N Series ========
-context "math()"
+context math()
 snippet `\b([ijk])=n` "i=1,2,\cdots,n" irAm
 `!p snip.rv = match[1]`=1,2,\cdots,${1:n}
 endsnippet
 
 
+# === Big Snippets ===
 
+context math()
+snippet bigdef "Big function" iAm
+	\begin{aligned}
+	$1\colon $2 &\longrightarrow $3 \\\\
+			$4 &\longmapsto $1($4) = $5
+	\end{aligned}
+endsnippet
 
-
-
+context math()
+snippet deff "Definition of function" iAm
+	$1\colon ${2:\\mathbb{R}} \to ${3:\\mathbb{R}}, ${4:x} \mapsto $0
+endsnippet

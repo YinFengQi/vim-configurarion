@@ -1,2 +1,8 @@
-test.*
+*.aux
+*.fdb_latexmk
 *.log
+*.fls
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.xdv

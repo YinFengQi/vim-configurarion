@@ -18,7 +18,8 @@ keymap.set("n", "L", ":bnext<CR>")
 keymap.set("n", "H", ":bprevious<CR>")
 keymap.set("n", "<leader>x", ":bdelete | bprevious<CR>")
 
-
+-- 在下方打开终端
+keymap.set("n", "<leader>h", ":sp | terminal <CR> i")
 
 ----- 插件 -----
 -- nvim-tree

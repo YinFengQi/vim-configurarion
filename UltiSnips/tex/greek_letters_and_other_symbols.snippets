@@ -11,35 +11,178 @@ def env(name):
 endglobal
 
 
-# 主要根据 vscode 的扩展 latex-workshop 的设定
-context "math()"
+context math()
 snippet `(?<!\\)(sum|min|max|argmin|argmax|sup|inf)` "sum|min|max|argmin|argmax|sup|inf" irAm
 \\`!p snip.rv = match[1] `
 endsnippet
 
-context "math()"
+context math()
 snippet `(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|exp|det|perp|arcsin|arccos|arctan|arccot|arccsc|arcsec|ell|nabla|notin|not)` "function" riAm
 \\`!p snip.rv = match[1] `
 endsnippet
 
-context "math()"
+context math()
 snippet `(?<!\\)(mu|alpha|sigma|rho|beta|Beta|gamma|delta|pi|zeta|eta|varepsilon|theta|iota|kappa|vartheta|lambda|xi|nu|pi|rho|tau|upsilon|varphi|phi|chi|psi|omega|Gamma|Delta|Theta|Lambda|Xi|Pi|Sigma|Upsilon|Phi|Psi|Omega)` "greek" riAm
 \\`!p snip.rv = match[1]`
 endsnippet
 
+context math()
+snippet `(?<![a-zA-Z])(Res|rank|trace|svd|eye|ones|orth|rows|cols|zeros|diag|rref|hstack|vstack|nullspace|eigen|dim|lcm|gcd|atan2|softmax|eig|sign|const|Hom|id)` "math function" irAm
+\operatorname{`!p snip.rv = match[1]`}
+endsnippet
+
+context math()
+snippet @6 "partial operator" iAm
+\partial
+endsnippet
+
+
 # === Greek letters ===
-context "math()"
+# 主要根据 vscode 的扩展 latex-workshop 的设定
+context math()
 snippet @a "alpha" iAm
 \alpha
 endsnippet
 
-context "math()"
+context math()
 snippet @A "Alpha" iAm
 \Alpha
 endsnippet
 
-context "math()"
+context math()
 snippet @b "beta" iAm
 \beta
 endsnippet
+
+context math()
+snippet @B "Beta" iAm
+\Beta
+endsnippet
+
+context math()
+snippet @d "delta" iAm
+\delta
+endsnippet
+
+context math()
+snippet @D "Delta" iAm
+\Delta
+endsnippet
+
+context math()
+snippet @e "epsilon" iAm
+\epsilon
+endsnippet
+
+context math()
+snippet @E "Epsilon" iAm
+\Epsilon
+endsnippet
+
+context math()
+snippet @ve "varepsilon" iAm
+\varepsilon
+endsnippet
+
+context math()
+snippet `\@Ve|\@VE` "Varepsilon" iAm
+\Varepsilon
+endsnippet
+
+
+context math()
+snippet @f "phi" iAm
+\phi
+endsnippet
+
+context math()
+snippet @F "Phi" iAm
+\Phi
+endsnippet
+
+context math()
+snippet @g "gamma" iAm
+\gamma
+endsnippet
+
+context math()
+snippet @G "description" iAm
+\Gamma
+endsnippet
+	
+context math()
+snippet @k "kappa" iAm
+\kappa
+endsnippet
+
+context math()
+snippet @K "Kappa" iAm
+\Kappa
+endsnippet
+
+context math()
+snippet @l "lambda" iAm
+\lambda
+endsnippet
+
+context math()
+snippet @L "Lambda" iAm
+\Lambda
+endsnippet
+
+context math()
+snippet @m "mu" iAm
+\mu
+endsnippet
+
+context math()
+snippet @M "Mu" iAm
+\Mu
+endsnippet
+
+context math()
+snippet @n "nu" iAm
+\nu
+endsnippet
+
+context math()
+snippet @N "Nu" iAm
+\Nu
+endsnippet
+
+context math()
+snippet @o "omega" iAm
+\omega
+endsnippet
+
+context math()
+snippet @O "Omega" iAm
+\Omega
+endsnippet
+
+context math()
+snippet @w "omega" iAm
+\omega
+endsnippet
+
+context math()
+snippet @W "Omega" iAm
+\Omega
+endsnippet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
