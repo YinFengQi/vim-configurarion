@@ -42,4 +42,6 @@ require("tokyonight").setup({
 })
 vim.cmd[[colorscheme tokyonight]]
 
+-- 以管理员权限保存
+vim.cmd[[let g:suda_smart_edit = 1]]
 

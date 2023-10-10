@@ -47,7 +47,7 @@ return require('packer').startup(function(use)
 
   use "lervag/vimtex" -- tex插件
   use "sirver/ultisnips" -- snippet插件
-
+  use "lambdalisue/suda.vim" -- 可以以管理员权限保存的插件
   -- My plugins here
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'

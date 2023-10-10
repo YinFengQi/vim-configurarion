@@ -115,6 +115,11 @@ _G.packer_plugins = {
     path = "/home/mny23/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["suda.vim"] = {
+    loaded = true,
+    path = "/home/mny23/.local/share/nvim/site/pack/packer/start/suda.vim",
+    url = "https://github.com/lambdalisue/suda.vim"
+  },
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/home/mny23/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
